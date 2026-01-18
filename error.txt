@@ -1,0 +1,61 @@
+warning: this lint expectation is unfulfilled
+   --> rekordcrate-lib\src\xml.rs:177:10
+    |
+177 | #[expect(dead_code)]
+    |          ^^^^^^^^^
+    |
+    = note: `#[warn(unfulfilled_lint_expectations)]` on by default
+
+warning: `rekordcrate` (lib) generated 1 warning
+    Checking fff v0.1.0 (C:\Users\ykuwa\ghq\github.com\kuwa72\fff)
+error[E0432]: unresolved import `rekordcrate::pdb::PlaylistNode`
+ --> src\main.rs:7:60
+  |
+7 | use rekordcrate::pdb::{PlaylistTreeNodeId, Track, TrackId, PlaylistNode};
+  |                                                            ^^^^^^^^^^^^
+  |                                                            |
+  |                                                            no `PlaylistNode` in `pdb`
+  |                                                            help: a similar name exists in the module: `PlaylistTreeNode`
+  |
+  = help: consider importing this enum instead:
+          rekordcrate::device::PlaylistNode
+
+warning: unused import: `Path`
+ --> src\main.rs:6:17
+  |
+6 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+error[E0599]: no method named `filter_map` found for struct `std::vec::Vec<(u32, TrackId)>` in the current scope
+  --> src\main.rs:75:18
+   |
+73 |               self.tracks_in_playlist = entries
+   |  _______________________________________-
+74 | |                 .sorted_by_key(|(idx, _)| *idx)
+75 | |                 .filter_map(|(_, track_id)| all_tracks.get(&track_id).copied().cloned())
+   | |                 -^^^^^^^^^^ `std::vec::Vec<(u32, TrackId)>` is not an iterator
+   | |_________________|
+   |
+   |
+help: call `.into_iter()` first
+   |
+75 |                 .into_iter().filter_map(|(_, track_id)| all_tracks.get(&track_id).copied().cloned())
+   |                  ++++++++++++
+
+error[E0609]: no field `file_path` on type `&rekordcrate::pdb::Track`
+  --> src\main.rs:82:34
+   |
+82 |             let rel_path = track.file_path.clone().into_string()?;
+   |                                  ^^^^^^^^^ unknown field
+   |
+help: one of the expressions' fields has a field of the same name
+   |
+82 |             let rel_path = track.offsets.inner.file_path.clone().into_string()?;
+   |                                  ++++++++++++++
+
+Some errors have detailed explanations: E0432, E0599, E0609.
+For more information about an error, try `rustc --explain E0432`.
+warning: `fff` (bin "fff") generated 1 warning
+error: could not compile `fff` (bin "fff") due to 3 previous errors; 1 warning emitted

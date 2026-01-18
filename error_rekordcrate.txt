@@ -1,0 +1,23 @@
+    Checking rekordcrate v0.3.0 (https://github.com/Holzhaus/rekordcrate#507cac9e)
+error[E0658]: use of unstable library feature `unsigned_is_multiple_of`
+   --> C:\Users\ykuwa\scoop\persist\rustup\.cargo\git\checkouts\rekordcrate-a49d0a68a7b52547\507cac9\src\util.rs:166:16
+    |
+166 |     if !offset.is_multiple_of(alignment) {
+    |                ^^^^^^^^^^^^^^
+    |
+    = note: see issue #128101 <https://github.com/rust-lang/rust/issues/128101> for more information
+
+error: `core::num::<impl u64>::is_multiple_of` is not yet stable as a const fn
+   --> C:\Users\ykuwa\scoop\persist\rustup\.cargo\git\checkouts\rekordcrate-a49d0a68a7b52547\507cac9\src\util.rs:166:9
+    |
+166 |     if !offset.is_multiple_of(alignment) {
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: add `#![feature(unsigned_is_multiple_of)]` to the crate attributes to enable
+   --> C:\Users\ykuwa\scoop\persist\rustup\.cargo\git\checkouts\rekordcrate-a49d0a68a7b52547\507cac9\src\lib.rs:26:1
+    |
+26  + #![feature(unsigned_is_multiple_of)]
+    |
+
+For more information about this error, try `rustc --explain E0658`.
+error: could not compile `rekordcrate` (lib) due to 2 previous errors
